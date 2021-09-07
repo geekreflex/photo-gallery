@@ -2,6 +2,8 @@
 const { generateToken } = require('../utils/generateToken');
 const User = require('../models/userModel');
 
+const { validationResult } = require('express-validator');
+
 module.exports = {
   loginUser: async (req, res) => {
     const { email, password } = req.body;
@@ -27,6 +29,15 @@ module.exports = {
 
   registerUser: async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const firstError = errors.array().map((error) => error.msg)[0];
+      return res.status(422).json({
+        errors: firstError,
+      });
+    }
 
     const userExists = await User.findOne({ email });
 

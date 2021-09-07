@@ -23,7 +23,10 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "express-validator": "^6.12.1",
+    "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.5"
+    "mongoose": "^6.0.5",
+    "validator": "^13.6.0"
   }
 }
