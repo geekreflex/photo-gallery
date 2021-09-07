@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 
 const userRoutes = require('./routes/userRoutes');
+const photoRoutes = require('./routes/photoRoutes');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/status', (req, res) => {
 });
 
 app.use('/api/users', userRoutes);
+app.use('/api/photos', photoRoutes);
 
 const PORT = process.env.PORT;
 
