@@ -24,6 +24,11 @@ const userSchema = Schema(
     bio: {
       type: String,
     },
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     timestamps: true,
