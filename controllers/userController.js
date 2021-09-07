@@ -65,4 +65,50 @@ module.exports = {
       });
     }
   },
+
+  getUserProfile: async (req, res) => {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      res.json({
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        bio: user.bio,
+      });
+    } else {
+      res.status(404).json({
+        message: 'User not found',
+      });
+    }
+  },
+
+  updateUserProfile: async (req, res) => {
+    const { firstName, lastName, email, bio } = req.body;
+
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      user.firstName = firstName || user.firstName;
+      user.lastName = lastName || user.lastName;
+      user.email = email || user.email;
+      user.bio = bio || user.bio;
+
+      const updatedUser = await user.save();
+
+      res.json({
+        message: 'User updated',
+        token: generateToken(updatedUser._id),
+        user: {
+          _id: updatedUser._id,
+          firstName: updatedUser.firstName,
+          lastName: updatedUser.lastName,
+          email: updatedUser.email,
+        },
+      });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  },
 };
