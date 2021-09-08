@@ -6,12 +6,24 @@ const photoSchema = new Schema(
     userId: { type: mongoose.Schema.Types.ObjectId },
     name: {
       type: String,
+      required: true,
     },
     url: {
       type: String,
+      required: true,
     },
     cloudId: {
       type: String,
+      required: true,
+    },
+    tags: [],
+    description: {
+      type: String,
+    },
+    likes: [{ type: mongoose.Schema.Types.ObjectId }],
+    views: {
+      type: Number,
+      default: 0,
     },
   },
   {
