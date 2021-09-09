@@ -10,9 +10,12 @@ import Login from './views/Login';
 import Register from './views/Register';
 import Dashboard from './views/Dashboard';
 
+import Header from './components/Header';
+
 function App() {
   return (
     <Router>
+      <Header />
       <Switch>
         <PublicRoute exact path="/login" component={Login} />
         <PublicRoute exact path="/register" component={Register} />

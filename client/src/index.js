@@ -5,6 +5,11 @@ import App from './App';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
+import { getTokenFromStorage, getUserDataFromStorage } from './redux/userSlice';
+
+store.dispatch(getTokenFromStorage());
+store.dispatch(getUserDataFromStorage());
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

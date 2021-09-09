@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerUserAsync } from '../redux/userSlice';
+import { Link } from 'react-router-dom';
+import Error from '../components/Error';
+import { registerUserAsync, clearError } from '../redux/userSlice';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -9,6 +11,10 @@ const Register = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, []);
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
@@ -24,43 +30,57 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h1>Register Page</h1>
-      <form onSubmit={handleRegisterSubmit}>
+    <div className="form-page">
+      <div className="form-wrap">
+        <h1>Sign Up</h1>
+        <form onSubmit={handleRegisterSubmit}>
+          <div className="input-wrap">
+            <input
+              type="text"
+              placeholder="First Name*"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-wrap">
+            <input
+              type="text"
+              placeholder="Last Name*"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-wrap">
+            <input
+              type="text"
+              placeholder="Email*"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-wrap">
+            <input
+              type="text"
+              placeholder="Password*"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <Error />
+          <button type="submit" className="btn form-btn">
+            Sign Up
+          </button>
+        </form>
         <div>
-          <input
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
+          <p>
+            Already a member? <Link to="/login">Sign In</Link>
+          </p>
         </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      </div>
     </div>
   );
 };

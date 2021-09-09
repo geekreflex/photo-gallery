@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { token } from '../helper/token';
 import { BASE_URL } from '../helper/baseUrl';
 
 const initialState = {
@@ -9,6 +8,7 @@ const initialState = {
   token: null,
   status: 'idle',
   isAuth: false,
+  error: null,
 };
 
 export const registerUserAsync = createAsyncThunk(
@@ -58,6 +58,7 @@ export const loginUserAsync = createAsyncThunk(
 
       return data;
     } catch (error) {
+      console.log(error.response.data.message);
       return thunkAPI.rejectWithValue(
         error.response && error.response.data.message
           ? error.response.data.message
@@ -72,6 +73,37 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     //
+    getTokenFromStorage(state) {
+      const authToken = localStorage.getItem('authToken')
+        ? JSON.parse(localStorage.getItem('authToken'))
+        : null;
+
+      if (authToken) {
+        state.isAuth = true;
+        state.token = authToken;
+      }
+    },
+
+    getUserDataFromStorage(state) {
+      const userData = localStorage.getItem('userData')
+        ? JSON.parse(localStorage.getItem('userData'))
+        : null;
+
+      if (userData) {
+        state.user = userData;
+      }
+    },
+
+    logoutUser(state) {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userData');
+      state.isAuth = false;
+      window.location = '/';
+    },
+
+    clearError(state) {
+      state.error = null;
+    },
   },
   extraReducers: {
     // register reducer
@@ -82,7 +114,8 @@ export const userSlice = createSlice({
       state.status = 'idle';
       state.isAuth = true;
       localStorage.setItem('authToken', JSON.stringify(action.payload.token));
-      state.user = action.payload.user;
+      localStorage.setItem('userData', JSON.stringify(action.payload.user));
+      window.location = '/dashboard';
     },
     [registerUserAsync.rejected]: (state, action) => {
       state.status = 'idle';
@@ -93,11 +126,12 @@ export const userSlice = createSlice({
     [loginUserAsync.pending]: (state) => {
       state.status = 'loading';
     },
-    [loginUserAsync.pending]: (state, action) => {
+    [loginUserAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
       state.isAuth = true;
       localStorage.setItem('authToken', JSON.stringify(action.payload.token));
-      state.user = action.payload.user;
+      localStorage.setItem('userData', JSON.stringify(action.payload.user));
+      window.location = '/dashboard';
     },
     [loginUserAsync.rejected]: (state, action) => {
       state.status = 'idle';
@@ -106,6 +140,11 @@ export const userSlice = createSlice({
   },
 });
 
-export const {} = userSlice.actions;
+export const {
+  getTokenFromStorage,
+  getUserDataFromStorage,
+  logoutUser,
+  clearError,
+} = userSlice.actions;
 
 export default userSlice.reducer;
