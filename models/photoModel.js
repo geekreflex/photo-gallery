@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const photoSchema = new Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     name: {
       type: String,
       required: true,

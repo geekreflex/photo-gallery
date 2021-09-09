@@ -11,6 +11,7 @@ module.exports = {
 
       let photo = new Photo({
         userId: userId,
+        user: userId,
         name: req.body.name,
         url: result.secure_url,
         cloudId: result.public_id,
@@ -29,7 +30,7 @@ module.exports = {
   },
 
   getPhotos: async (req, res) => {
-    const photos = await Photo.find({});
+    const photos = await Photo.find({}).populate('user', 'firstName');
     if (photos) {
       res.json({
         photos,

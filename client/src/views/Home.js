@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import CategorySelect from '../components/CategorySelect';
 import Hero from '../components/Hero';
-import { getPhotosAsync } from '../redux/photoSlice';
+import Photos from '../components/Photos';
+import { getPhotosAsync } from '../redux/photosSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <CategorySelect />
+      <Photos />
     </div>
   );
 };

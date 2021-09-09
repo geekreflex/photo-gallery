@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { uploadPhotoAsync } from '../redux/photoSlice';
+import { uploadPhotoAsync } from '../redux/photosSlice';
 
 const Upload = () => {
   const [name, setName] = useState('');

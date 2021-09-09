@@ -50,6 +50,7 @@ export const getPhotosAsync = createAsyncThunk(
       const { data } = await axios.get(`${BASE_URL}/photos`, payload, config);
 
       console.log(data);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response && error.response.data.message
@@ -60,7 +61,7 @@ export const getPhotosAsync = createAsyncThunk(
   }
 );
 
-const uploadSlice = createSlice({
+const photosSlice = createSlice({
   name: 'photos',
   initialState,
   reducers: {
@@ -79,9 +80,22 @@ const uploadSlice = createSlice({
       state.status = 'idle';
       console.log(action.payload);
     },
+
+    // fetch photos
+    [getPhotosAsync.pending]: (state) => {
+      state.status = 'loading';
+    },
+    [getPhotosAsync.fulfilled]: (state, action) => {
+      state.status = 'idle';
+      state.photos = action.payload.photos;
+    },
+    [getPhotosAsync.rejected]: (state, action) => {
+      state.status = 'idle';
+      state.error = action.payload;
+    },
   },
 });
 
 // export const {} = uploadSlice.actions;
 
-export default uploadSlice;
+export default photosSlice.reducer;
