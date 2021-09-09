@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(clearError());
-  }, []);
+  }, [dispatch]);
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();

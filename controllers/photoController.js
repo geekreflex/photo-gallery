@@ -23,7 +23,7 @@ module.exports = {
       });
     } catch (error) {
       res.status(422).json({
-        error,
+        message: error.message || 'Error occurred',
       });
     }
   },

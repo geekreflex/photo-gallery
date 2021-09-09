@@ -47,8 +47,13 @@ header {
   border-radius: 3px;
 }
 
+.logo-wrap h3:hover {
+  color: #ddd;
+  border-color: #ddd;
+}
+
 .inner-header {
-  height: 50px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,14 +67,25 @@ header {
 
 .links a {
   color: #fff;
+  font-weight: 600;
+}
+
+.links a:hover {
+  color: #ddd;
+  text-decoration: underline;
 }
 
 .links a,
 .links button {
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
-/* register */
+.auth-links {
+  display: flex;
+  align-items: center;
+}
+
+/* form */
 
 .form-page {
   display: flex;
@@ -109,4 +125,35 @@ header {
   width: 100%;
   color: #fff !important;
   margin-bottom: 20px;
+}
+
+/* hero */
+.hero {
+  width: 100%;
+  height: 400px;
+  background-color: #eee;
+}
+
+/* category */
+.category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.category-inner ul {
+  display: flex;
+  list-style: none;
+}
+
+.category-inner ul li {
+  margin: 0 10px;
+}
+
+.category-inner ul li a {
+  color: #333;
+  font-weight: 600;
+  padding: 10px 20px;
 }

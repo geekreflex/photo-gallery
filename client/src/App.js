@@ -11,6 +11,7 @@ import Register from './views/Register';
 import Dashboard from './views/Dashboard';
 
 import Header from './components/Header';
+import Upload from './views/Upload';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <PublicRoute exact path="/login" component={Login} />
         <PublicRoute exact path="/register" component={Register} />
         <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+        <ProtectedRoute exact path="/upload" component={Upload} />
         <Route exact path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

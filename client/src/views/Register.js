@@ -14,7 +14,7 @@ const Register = () => {
 
   useEffect(() => {
     dispatch(clearError());
-  }, []);
+  }, [dispatch]);
 
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
