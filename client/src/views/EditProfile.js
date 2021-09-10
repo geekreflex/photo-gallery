@@ -47,7 +47,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div>
+    <div className="edit-page">
       <div className="container">
         <div className="form-page">
           <div className="form-wrap edit-form-wrap">

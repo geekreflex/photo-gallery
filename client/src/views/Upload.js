@@ -26,13 +26,9 @@ const Upload = () => {
 
     const img = document.querySelector('.preview-upload-img');
 
-    if (image) {
-      setTimeout(() => {
-        const [file] = e.target.files;
-        if (file) {
-          img.src = URL.createObjectURL(file);
-        }
-      }, 1000);
+    const [file] = e.target.files;
+    if (file) {
+      img.src = URL.createObjectURL(file);
     }
   };
 
@@ -52,7 +48,8 @@ const Upload = () => {
                   <input
                     type="text"
                     value={name}
-                    onChange={(e) => setName(e.target.files[0])}
+                    placeholder="Descriptive Title*"
+                    onChange={(e) => setName(e.target.value)}
                     required
                   />
                 </div>
@@ -61,13 +58,10 @@ const Upload = () => {
                 </button>
               </form>
             </div>
-            {image ? (
-              <div className="preview-img">
-                <img className="preview-upload-img" />
-              </div>
-            ) : (
-              ''
-            )}
+
+            <div className="preview-img">
+              <img className="preview-upload-img" />
+            </div>
           </div>
         </div>
       </div>

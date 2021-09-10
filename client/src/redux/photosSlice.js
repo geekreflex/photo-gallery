@@ -74,7 +74,7 @@ const photosSlice = createSlice({
     },
     [uploadPhotoAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
-      console.log(action.payload);
+      window.location = '/dashboard';
     },
     [uploadPhotoAsync.rejected]: (state, action) => {
       state.status = 'idle';

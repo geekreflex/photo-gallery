@@ -199,6 +199,15 @@ header {
   background-color: #333;
   margin-right: 5px;
 }
+.avatar img {
+  border-radius: 50%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .user-info {
   display: flex;
@@ -215,6 +224,14 @@ header {
   background-color: #555;
   border-radius: 50%;
   margin-bottom: 20px;
+}
+
+.user-img-wrap img {
+  border-radius: 50%;
+}
+
+.edit-page {
+  margin-bottom: 100px;
 }
 
 .edit-wrap {
@@ -298,9 +315,6 @@ header {
 }
 
 .avatar-edit img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -326,7 +340,6 @@ header {
 
 .preview-img {
   width: 400px;
-  height: 400px;
   background-color: #ddd;
 }
 
