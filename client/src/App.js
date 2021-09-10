@@ -9,6 +9,7 @@ import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
 import Dashboard from './views/Dashboard';
+import EditProfile from './views/EditProfile';
 
 import Header from './components/Header';
 import Upload from './views/Upload';
@@ -22,6 +23,7 @@ function App() {
         <PublicRoute exact path="/register" component={Register} />
         <ProtectedRoute exact path="/dashboard" component={Dashboard} />
         <ProtectedRoute exact path="/upload" component={Upload} />
+        <ProtectedRoute exact path="/edit-profile" component={EditProfile} />
         <Route exact path="/" component={Home} />
         <Redirect to="/" />
       </Switch>

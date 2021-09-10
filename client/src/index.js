@@ -5,10 +5,10 @@ import App from './App';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
-import { getTokenFromStorage, getUserDataFromStorage } from './redux/userSlice';
+import { getTokenFromStorage, getUserProfileAsync } from './redux/userSlice';
 
 store.dispatch(getTokenFromStorage());
-store.dispatch(getUserDataFromStorage());
+store.dispatch(getUserProfileAsync());
 
 ReactDOM.render(
   <React.StrictMode>
